@@ -60,8 +60,8 @@ Get-ChildItem 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP' -recurse | Get-
 コマンド実行結果の例 :
 
 ```
-> PSChildName                      Version        Release
-\-----------                      -------        -------
+PSChildName                      Version        Release
+-----------                      -------        -------
 Client                           4.7.03190      461814　<-- このバージョンを確認します。
 Full                             4.7.03190      461814
 Client                           4.0.0.0                
@@ -71,7 +71,7 @@ Client                           4.0.0.0
 
 ※ 4.7 のバージョンは OS によっては追加のモジュールのインストールが必要なのでここでは 4.6 の紹介にしていますが、もちろん 4.7 のインストールで構いません。
  
-Microsoft .NET Framework 4.6
+Microsoft .NET Framework 4.6  
 https://www.microsoft.com/ja-jp/download/details.aspx?id=48137
  
 ### 2-2. PowerShell モジュールのバージョンについて
@@ -85,14 +85,14 @@ $psversiontable
 コマンド実行結果の例 :
 
 ```
-> Name                           Value
-\----                           -----
+Name                           Value
+----                           -----
 PSVersion                      5.1.17763.316　<-- このバージョンを確認します。
 ```
 
 5.0 よりも古い場合は、下記のサイトから Windows Management Framework (WMF) 5.1 をダウンロードしてインストールします。
  
-Windows Management Framework 5.1
+Windows Management Framework 5.1  
 https://www.microsoft.com/en-us/download/details.aspx?id=54616
  
 ### 2-3. MSOnline / Azure AD モジュールのバージョンについて
@@ -105,8 +105,8 @@ Get-InstalledModule
 コマンド実行結果の例 :
 
 ```
-> Version              Name                                Repository           Description
-\-------              ----                                ----------           -----------
+Version              Name                                Repository           Description
+-------              ----                                ----------           -----------
 1.1.183.17           MSOnline                            PSGallery            Microsoft Azure Active Directory Modul...　              <-- このバージョンを確認します。
 2.0.2.5             AzureADPreview                      PSGallery            Azure Active Directory V2 Preview Modu...                        <-- このバージョンを確認します。
 ```
@@ -119,7 +119,7 @@ Install-Module -Name MSOnline -AllowClobber -Force
 
 ※ Install-Module コマンドを認識しない場合は、Windows Management Framework 5.1（PowerShell 5.0 を含む）がインストールされていないか可能性があります。インストールが難しい場合は、下記の PackageManagement PowerShell Modules（PowerShellGet）のみインストールください。
  
-PackageManagement PowerShell Modules Preview - March 2016
+PackageManagement PowerShell Modules Preview - March 2016  
 https://www.microsoft.com/en-us/download/details.aspx?id=51451
  
 なお、古いバージョンの MSOnline モジュールがインストールされている環境では、下記のコマンドにてモジュールのバージョンを確認することが可能です。
@@ -129,7 +129,10 @@ https://www.microsoft.com/en-us/download/details.aspx?id=51451
 ```
 
 コマンド実行結果の例 :
-> 1.1.166.0
+
+```
+1.1.166.0
+```
 
 この場合も、下記のコマンドを実行し、新しい MSOnline モジュールをインストールする必要があります。
 
@@ -150,11 +153,11 @@ Install-Module -Name MSOnline
  
 2. 下記のコマンドレットを実行し、リポジトリ ファイル群をダウンロードします。
 
-  ``` powershell
-  Save-Module -Name MSOnline -Path C:\temp
-  ```
+    ``` powershell
+    Save-Module -Name MSOnline -Path C:\temp
+    ```
 
-  ※ C:\temp\ フォルダーの指定は任意です。
+    ※ C:\temp\ フォルダーの指定は任意です。
  
 3. ダウンロードした MSOnline フォルダーを Office 365 に PowerShell 接続するための PC 上の C:\Temp 配下に配置します。
  
@@ -162,29 +165,29 @@ Install-Module -Name MSOnline
  
 5. 下記のコマンドを実行して、モジュールをインポートします。
 
-  ``` powershell
-  Import-Module "C:\Temp\MSOnline\＜バージョン番号＞\MSOnline.psd1"
-  ```
+    ``` powershell
+    Import-Module "C:\Temp\MSOnline\＜バージョン番号＞\MSOnline.psd1"
+    ```
 
-  ※ 3. で配置したフォルダーを指定ください。
-  ※ エラーが発生する場合は、モジュールの各ファイルのプロパティを開いて「ブロック解除」されていることをご確認ください。
+    ※ 3. で配置したフォルダーを指定ください。
+    ※ エラーが発生する場合は、モジュールの各ファイルのプロパティを開いて「ブロック解除」されていることをご確認ください。
  
 6. 下記のコマンドを実行して、モジュールがインポートされたことを確認します。
 
-  ``` powershell
-  Get-Module MSOnline
-  ```
+    ``` powershell
+    Get-Module MSOnline
+    ```
 
 7. 次のような結果が返れば、インポート完了です。
  
-コマンド実行結果の例 :
+    コマンド実行結果の例 :
 
-```
-> powershell
-ModuleType Version Name ExportedCommands
-\---------- ------- ---- ----------------
-Manifest 1.1.183.17 MSOnline {Add-MsolAdministrativeUnitMember, Add-MsolForeignGroupToRole, Add-MsolGroupMember, Add-MsolRoleMember...}
-```
+    ```
+    > powershell
+    ModuleType Version Name ExportedCommands
+    ---------- ------- ---- ----------------
+    Manifest 1.1.183.17 MSOnline {Add-MsolAdministrativeUnitMember, Add-MsolForeignGroupToRole, Add-MsolGroupMember, Add-MsolRoleMember...}
+    ```
 
 ## 3. ネットワーク環境の確認
  
@@ -192,7 +195,7 @@ Manifest 1.1.183.17 MSOnline {Add-MsolAdministrativeUnitMember, Add-MsolForeignG
  
 クライアントから Office 365 への通信が確保されていることを確認します。
  
-Office 365 URLs and IP address ranges
+Office 365 URLs and IP address ranges  
 https://docs.microsoft.com/en-us/office365/enterprise/urls-and-ip-address-ranges
 
 ※ PowerShell は、「Microsoft 365 Common および Office Online」カテゴリの通信になります。
@@ -222,7 +225,7 @@ $ProxyCredential = New-Object System.Net.NetworkCredential("ユーザー名","�
 
 ただし、 Office 365 を使用する際、認証付きプロキシの使用は非推奨です (一部は対応自体しておりません)。Office 365 のエンドポイントに対してアクセスする際はプロキシでの認証が除外されるよう構成されていることをご確認ください。
  
-Managing Office 365 endpoints
+Managing Office 365 endpoints  
 https://docs.microsoft.com/en-us/office365/enterprise/managing-office-365-endpoints
 
 > Separately if you choose to only do direct routing for the Optimize category endpoints, any required Allow category endpoints that you send to the proxy server will need to be listed in the proxy server to bypass further processing. For example, SSL break and Inspect and Proxy Authentication are incompatible with both the Optimize and Allow category endpoints.
@@ -231,7 +234,7 @@ https://docs.microsoft.com/en-us/office365/enterprise/managing-office-365-endpoi
  
 既定では、実行端末のインターネット オプション設定（wininet）で指定しているプロキシを使用しますので、自動構成スクリプトで pac ファイルを指定している場合、これに基づき動作します。PowerShell 使用時にのみ明示的に特定のプロキシ サーバーを指定するように構成することも可能です。社内に複数のプロキシ サーバーがある場合など、切り分けとして動作確認することが有効です。
  
-※プロキシ サーバー：10.10.10.10、ポート：8080 の場合
+※プロキシ サーバー: 10.10.10.10、ポート: 8080 の場合
 
 ```powershell
 [System.Net.WebRequest]::DefaultWebProxy = New-Object System.Net.WebProxy("http://10.10.10.10:8080")
@@ -256,10 +259,10 @@ Connect-MsolService -Credential $Credential
 
 下記の公開情報にて HTTP トレースの採取方法を記載しております。
  
-Office 365 サポートにお問い合わせいただく際に事前に確認いただく内容
+Office 365 サポートにお問い合わせいただく際に事前に確認いただく内容  
 https://social.msdn.microsoft.com/Forums/ja-JP/e4ceb783-43df-41ea-9286-3e95938c224c/office-365?forum=exchangeteamjp
-情報採取プラン「c. HTTP トレース」を参照ください。
 
+情報採取プラン「c. HTTP トレース」を参照ください。
 
 以上を確認いただいても事象改善しない場合などについては、もちろん弊社サポートサービスの利用もご検討くださいますようお願いします。
 
